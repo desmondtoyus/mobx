@@ -19,18 +19,9 @@ class TodoStore {
     },
   ];
 
-  constructor() {
-    makeObservable(this, {
-      todos: observable,
-      addOne: action,
-      list: action,
-    });
-  }
-
   get countAll() {
     return this.todos.length;
   }
-
   //@action
   addOne(name) {
     const obj = {
@@ -40,10 +31,17 @@ class TodoStore {
     };
     return this.todos.push(obj);
   }
-
   // @action
   list() {
     return JSON.parse(JSON.stringify(this.todos));
+  }
+
+  constructor() {
+    makeObservable(this, {
+      todos: observable,
+      addOne: action,
+      list: action,
+    });
   }
 }
 
