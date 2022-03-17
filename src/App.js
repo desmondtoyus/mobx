@@ -4,27 +4,49 @@ import {observer as observerLite, Observer, useObserver} from "mobx-react-lite";
 
 import { useStore } from "./store";
   
-const App = inject( "todoStore")(({ todoStore }) => {
+// const App = inject( "todoStore")(({ todoStore }) => {
 
-  const [name, setName] = useState();
+//   const [name, setName] = useState();
 
-  console.log('name === ', todoStore.value);
-  return (
-    <div>
-      <h3>TodoList</h3>
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-       />
-       {<Observer>{() => <p>  {todoStore.value} </p>}</Observer> }
-      <button  onClick={() => todoStore.increment(name)}>
-        Submit
-      </button>
+//   console.log('name === ', todoStore.value);
+//   return (
+//     <div>
+//       <h3>TodoList</h3>
+//       <input
+//         type="text"
+//         value={name}
+//         onChange={(e) => setName(e.target.value)}
+//        />
+//        {<Observer>{() => <p>  {todoStore.value} </p>}</Observer> }
+//       <button  onClick={() => todoStore.increment(name)}>
+//         Submit
+//       </button>
 
-    </div>
-  );
-});
+//     </div>
+//   );
+// });
+
+const App = inject("todoStore")(
+  observer(({ todoStore }) => {
+    const [name, setName] = useState();
+    console.log('name === ', todoStore.value);
+    return (
+      <div>
+        <h3>TodoList</h3>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+         />
+         <p>  {todoStore.value} </p>
+        <button  onClick={() => todoStore.increment(name)}>
+          Submit
+        </button>
+  
+      </div>
+    );
+  })
+)
 
 // const App = observer(() => {
 //   const [name, setName] = useState();
