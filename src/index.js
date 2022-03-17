@@ -6,9 +6,6 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import todoStore from './store';
-// import Store, { StoreProvider } from "./store";
- 
-// const store = new Store();
 
 ReactDOM.render(
   <React.StrictMode>
